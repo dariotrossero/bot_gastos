@@ -67,7 +67,8 @@ def get_or_create_sheet(month_name: str):
 
 
 def is_authorized(update: Update) -> bool:
-    return update.effective_user.id == TELEGRAM_CHAT_ID
+    allowed = [int(x.strip()) for x in os.getenv("TELEGRAM_CHAT_ID", "").split(",")]
+    return update.effective_user.id in allowed
 
 
 def detect_category(concepto: str, config: dict) -> str:
