@@ -1,0 +1,17 @@
+  GNU nano 7.2                                                                          /etc/systemd/system/bot-gastos.service                                                                                   
+[Unit]
+Description=Bot de Gastos Telegram
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/bot-gastos
+EnvironmentFile=/root/bot-gastos/.env
+ExecStart=/root/bot-gastos/venv/bin/python bot.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
