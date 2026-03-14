@@ -7,9 +7,9 @@ Wants=network-online.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/root/bot-gastos
-EnvironmentFile=/root/bot-gastos/.env
-ExecStart=/root/bot-gastos/venv/bin/python bot.py
+WorkingDirectory=/root/bot_gastos
+EnvironmentFile=/root/bot_gastos/.env
+ExecStart=/root/bot_gastos/venv/bin/python bot.py
 Restart=always
 RestartSec=10
 
