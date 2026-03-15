@@ -170,13 +170,14 @@ async def save_expense(update: Update, context: ContextTypes.DEFAULT_TYPE):
             fecha_str = target_month.strftime("%Y-%m-%d")
             tipo = "real" if i == 0 else "informativo"
             sh = get_or_create_sheet(sheet_name)
-            sh.append_row([fecha_str, categoria, concepto, monto, f"{i+1}/{cuotas}", tipo])
+            sh.append_row([fecha_str, categoria, concepto, monto, f"{i+1}/{cuotas}", tipo], value_input_option='USER_ENTERED')
+
         msg = f"✅ *${monto:,.0f}* — {concepto} ({cuotas} cuotas)\n📂 {categoria}"
     else:
         fecha_str = date.today().strftime("%Y-%m-%d")
         sheet_name = date.today().strftime("%Y-%m")
         sh = get_or_create_sheet(sheet_name)
-        sh.append_row([fecha_str, categoria, concepto, monto, "", "real"])
+        sh.append_row([fecha_str, categoria, concepto, monto, "", "real"], value_input_option='USER_ENTERED')
         msg = f"✅ *${monto:,.0f}* — {concepto}\n📂 {categoria}"
 
     await update.callback_query.edit_message_text(msg, parse_mode="Markdown")
